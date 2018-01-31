@@ -46,18 +46,21 @@ public class Robot extends TimedRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		
-		files.add("/home/admin/testfile");
-		files.add("/home/admin/testfile2");
+		files.add("/home/lvuser/paths/testfile");
+		files.add("/home/lvuser/paths/testfile2");
 		filesystem = new FileSubsystem(files);
-		List<String> lines;
+		List<String> linesToRead;
+		List<String> linesToWrite = new ArrayList<String>();
+		linesToWrite.add("0.2, -0.4,\n");
 		try {
-			lines = filesystem.readLines(1);
-			for(String line : lines) {
-				double[] nums = splitLine(line);
-				for(double num : nums) {
-					System.out.println(num);
-				}
-			}
+			filesystem.writeLines(linesToWrite, 0);
+//			linesToRead = filesystem.readLines(1);
+//			for(String line : linesToRead) {
+//				double[] nums = splitLine(line);
+//				for(double num : nums) {
+//					System.out.println(num);
+//				}
+//			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

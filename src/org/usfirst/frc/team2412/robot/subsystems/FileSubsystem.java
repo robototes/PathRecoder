@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2412.robot.subsystems;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -23,6 +24,15 @@ public class FileSubsystem extends Subsystem {
 		BufferedReader br = Files.newBufferedReader(Paths.get(filename));
 		lines = br.lines().collect(Collectors.toList());
 		return lines;
+	}
+	
+	public void writeLines(List<String> lines, int index) throws java.io.IOException {
+		String filename = filenames.get(index);
+		BufferedWriter bw = Files.newBufferedWriter(Paths.get(filename));
+		for(String line : lines) {
+			bw.write(line);
+		}
+		bw.close();
 	}
 	
 	@Override
