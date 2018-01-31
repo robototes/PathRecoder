@@ -7,13 +7,18 @@
 
 package org.usfirst.frc.team2412.robot;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.usfirst.frc.team2412.robot.commands.ExampleCommand;
+import org.usfirst.frc.team2412.robot.subsystems.FileSubsystem;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team2412.robot.commands.ExampleCommand;
-import org.usfirst.frc.team2412.robot.subsystems.ExampleSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,8 +28,8 @@ import org.usfirst.frc.team2412.robot.subsystems.ExampleSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-	public static final ExampleSubsystem kExampleSubsystem
-			= new ExampleSubsystem();
+	public List<String> files = new ArrayList<String>();
+	public FileSubsystem filesystem;
 	public static OI m_oi;
 
 	Command m_autonomousCommand;
@@ -40,6 +45,32 @@ public class Robot extends TimedRobot {
 		m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
+		
+		files.add("/home/admin/testfile");
+		files.add("/home/admin/testfile2");
+		filesystem = new FileSubsystem(files);
+		List<String> lines;
+		try {
+			lines = filesystem.readLines(1);
+			for(String line : lines) {
+				double[] nums = splitLine(line);
+				for(double num : nums) {
+					System.out.println(num);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private double[] splitLine(String line) {
+		String pieces[] = line.split(", ");
+		double[] nums = new double[pieces.length];
+		for(int i = 0; i < nums.length; i++) {
+			String piece = pieces[i].split(",")[0];
+			nums[i] = Double.parseDouble(piece);
+		}
+		return nums;
 	}
 
 	/**
