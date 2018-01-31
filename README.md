@@ -1,1 +1,1 @@
-# PathRecorder
+# TrajectoryRecorder
