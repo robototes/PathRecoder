@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.usfirst.frc.team2412.robot.commands.CommandBase;
 import org.usfirst.frc.team2412.robot.subsystems.FileSubsystem;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -25,8 +26,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  * project.
  */
 public class Robot extends TimedRobot {
-	public List<String> files = new ArrayList<String>();
-	public FileSubsystem filesystem;
+	public static List<String> files = new ArrayList<String>();
 	public static OI m_oi;
 
 	Command m_autonomousCommand;
@@ -40,13 +40,13 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		files.add("/home/lvuser/paths/testfile");
 		files.add("/home/lvuser/paths/testfile2");
-		filesystem = new FileSubsystem(files);
+		CommandBase.fileSystem = new FileSubsystem(files);
 		List<String> linesToRead;
 		List<String> linesToWrite = new ArrayList<String>();
 		linesToWrite.add("0.2, -0.4,\n");
 		try {
-			filesystem.writeLines(linesToWrite, 0);
-//			linesToRead = filesystem.readLines(1);
+			CommandBase.fileSystem.writeLines(linesToWrite, 0);
+//			linesToRead = CommandBase.fileSystem.readLines(1);
 //			for(String line : linesToRead) {
 //				double[] nums = splitLine(line);
 //				for(double num : nums) {
