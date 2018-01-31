@@ -58,16 +58,6 @@ public class Robot extends TimedRobot {
 		}
 	}
 	
-	private double[] splitLine(String line) {
-		String pieces[] = line.split(", ");
-		double[] nums = new double[pieces.length];
-		for(int i = 0; i < nums.length; i++) {
-			String piece = pieces[i].split(",")[0];
-			nums[i] = Double.parseDouble(piece);
-		}
-		return nums;
-	}
-
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
 	 * You can use it to reset any subsystem information you want to clear when
