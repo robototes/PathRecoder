@@ -2,19 +2,17 @@ package org.usfirst.frc.team2412.robot.commands;
 
 import org.usfirst.frc.team2412.robot.Robot;
 
-public class DriveCommand extends CommandBase {
-
-	public DriveCommand() {
+public class RecordPathCommand extends CommandBase {
+	public RecordPathCommand() {
 		requires(driveBase);
 	}
-	
 	@Override
 	protected boolean isFinished() {
 		return false;
 	}
 	
 	protected void execute() {
-		System.out.println("Driving normally...");
+		System.out.println("Recording path...");
 		driveBase.drive(Robot.m_oi.stick);
 	}
 }
