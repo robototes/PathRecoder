@@ -20,4 +20,17 @@ public class Trajectory {
 	public Trajectory(List<Setpoint> setpoints) {
 		this.setpoints = setpoints;
 	}
+	
+	@Override
+	public String toString() {
+		String str = "";
+		for(int i = 0; i < setpoints.size(); i++) {
+			Setpoint point = setpoints.get(i);
+			str += point.toString();
+			if(i < setpoints.size() - 1) {
+				str += ",\n";
+			}
+		}
+		return str;
+	}
 }

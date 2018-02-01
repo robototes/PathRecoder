@@ -20,4 +20,9 @@ public class Setpoint {
 		this.velocity = velocity;
 		this.angle = angle;
 	}
+	
+	@Override
+	public String toString() {
+		return velocity + ", " + angle;
+	}
 }
