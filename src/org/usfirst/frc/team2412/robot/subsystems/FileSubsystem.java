@@ -43,7 +43,7 @@ public class FileSubsystem extends Subsystem {
 	 * @param index Which file to read the paths from.
 	 * @return A Trajectory instance, created from the specified file.
 	 */
-	public Trajectory readPath(int index) {
+	public Trajectory readTrajectory(int index) {
 		try {
 			List<String> lines = readLines(index);
 			List<Setpoint> points = new ArrayList<Setpoint>();
