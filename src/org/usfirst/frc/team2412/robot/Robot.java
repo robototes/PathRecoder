@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.usfirst.frc.team2412.robot.commands.CommandBase;
+import org.usfirst.frc.team2412.robot.commands.RunTrajectoryCommand;
 import org.usfirst.frc.team2412.robot.trajectory.Trajectory;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
@@ -28,7 +28,7 @@ public class Robot extends TimedRobot {
 	public static List<String> files = new ArrayList<String>();
 	public static OI m_oi;
 
-	Command m_autonomousCommand;
+	RunTrajectoryCommand m_autonomousCommand;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -70,6 +70,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		m_autonomousCommand = new RunTrajectoryCommand(CommandBase.fileSystem.readTrajectory(0));
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
