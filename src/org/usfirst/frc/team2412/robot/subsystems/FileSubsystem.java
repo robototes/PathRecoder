@@ -29,17 +29,9 @@ public class FileSubsystem extends Subsystem {
 		return lines;
 	}
 	
-	public void writeLines(List<String> lines, int index) throws java.io.IOException {
-		String filename = filenames.get(index);
-		BufferedWriter bw = Files.newBufferedWriter(Paths.get(filename));
-		for(String line : lines) {
-			bw.write(line);
-		}
-		bw.close();
-	}
 	
 	/**
-	 * readPath() generates a Trajectory from a file.
+	 * readTrajectory() generates a Trajectory from a file.
 	 * @param index Which file to read the paths from.
 	 * @return A Trajectory instance, created from the specified file.
 	 */
@@ -56,6 +48,22 @@ public class FileSubsystem extends Subsystem {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	/**
+	 * writeTrajectory() writes a Trajectory to a file.
+	 * @param t The Trajectory to write.
+	 * @param index The file to write to.
+	 */
+	public void writeTrajectory(Trajectory t, int index) {
+		String filename = filenames.get(index);
+		try {
+			BufferedWriter bw = Files.newBufferedWriter(Paths.get(filename));
+			bw.write(t.toString());
+			bw.close();
+		} catch(java.io.IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
