@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.usfirst.frc.team2412.robot.trajectory.Setpoint;
+import org.usfirst.frc.team2412.robot.trajectory.Trajectory;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class FileSubsystem extends Subsystem {
@@ -18,7 +21,7 @@ public class FileSubsystem extends Subsystem {
 		filenames = files;
 	}
 	
-	public List<String> readLines(int index) throws java.io.IOException {
+	private List<String> readLines(int index) throws java.io.IOException {
 		String filename = filenames.get(index);
 		List<String> lines = new ArrayList<String>();
 		BufferedReader br = Files.newBufferedReader(Paths.get(filename));
@@ -33,6 +36,26 @@ public class FileSubsystem extends Subsystem {
 			bw.write(line);
 		}
 		bw.close();
+	}
+	
+	/**
+	 * readPath() generates a Trajectory from a file.
+	 * @param index Which file to read the paths from.
+	 * @return A Trajectory instance, created from the specified file.
+	 */
+	public Trajectory readPath(int index) {
+		try {
+			List<String> lines = readLines(index);
+			List<Setpoint> points = new ArrayList<Setpoint>();
+			for(String line : lines) {
+				double[] values = splitLine(line);
+				points.add(new Setpoint(values[0], values[1]));
+			}
+			return new Trajectory(points);
+		} catch(java.io.IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	@Override
