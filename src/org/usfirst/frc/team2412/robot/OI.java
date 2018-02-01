@@ -46,7 +46,7 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	public OI() {
-		startRecordingButton.whenPressed(new RecordPathCommand());
+		startRecordingButton.whileHeld(new RecordPathCommand());
 	}
 	
 	public Joystick stick = new Joystick(0);
