@@ -28,8 +28,9 @@ public class Trajectory {
 			Setpoint point = setpoints.get(i);
 			str += point.toString();
 			if(i < setpoints.size() - 1) {
-				str += ",\n";
+				str += ",";
 			}
+			str += "\n";
 		}
 		return str;
 	}
