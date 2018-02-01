@@ -7,7 +7,7 @@
 
 package org.usfirst.frc.team2412.robot;
 
-import org.usfirst.frc.team2412.robot.commands.RecordPathCommand;
+import org.usfirst.frc.team2412.robot.commands.RecordTrajectoryCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -46,7 +46,7 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	public OI() {
-		startRecordingButton.whileHeld(new RecordPathCommand());
+		startRecordingButton.whileHeld(new RecordTrajectoryCommand());
 	}
 	
 	public Joystick stick = new Joystick(0);

@@ -7,9 +7,9 @@ import org.usfirst.frc.team2412.robot.Robot;
 import org.usfirst.frc.team2412.robot.trajectory.Setpoint;
 import org.usfirst.frc.team2412.robot.trajectory.Trajectory;
 
-public class RecordPathCommand extends CommandBase {
+public class RecordTrajectoryCommand extends CommandBase {
 	private List<Setpoint> points = new ArrayList<Setpoint>();
-	public RecordPathCommand() {
+	public RecordTrajectoryCommand() {
 		requires(driveBase);
 		requires(fileSystem);
 	}
