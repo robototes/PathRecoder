@@ -14,9 +14,9 @@ public class Setpoint {
 	public double angle;
 	
 	/**
-	 * Constructor. Access is restricted to only classes in the same package because only the Trajectory class needs to create Setpoints.
+	 * Constructor. Creates a new Setpoint instance from velocity and angle values.
 	 */
-	Setpoint(double velocity, double angle) {
+	public Setpoint(double velocity, double angle) {
 		this.velocity = velocity;
 		this.angle = angle;
 	}
