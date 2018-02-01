@@ -34,4 +34,12 @@ public class Trajectory {
 		}
 		return str;
 	}
+	
+	/**
+	 * Getter method for List of Setpoints.
+	 * @return A List of Setpoints that this Trajectory instance holds.
+	 */
+	public List<Setpoint> getSetpoints() {
+		return setpoints;
+	}
 }
