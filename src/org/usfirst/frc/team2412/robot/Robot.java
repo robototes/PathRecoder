@@ -7,12 +7,11 @@
 
 package org.usfirst.frc.team2412.robot;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.usfirst.frc.team2412.robot.commands.CommandBase;
-import org.usfirst.frc.team2412.robot.subsystems.FileSubsystem;
+import org.usfirst.frc.team2412.robot.trajectory.Trajectory;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -40,24 +39,9 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		files.add("/home/lvuser/paths/testfile");
 		files.add("/home/lvuser/paths/testfile2");
-		CommandBase.fileSystem = new FileSubsystem(files);
-		List<String> linesToRead;
-		List<String> linesToWrite = new ArrayList<String>();
-		linesToWrite.add("0.2, -0.4,\n");
-		try {
-			CommandBase.fileSystem.writeLines(linesToWrite, 0);
-//			linesToRead = CommandBase.fileSystem.readLines(1);
-//			for(String line : linesToRead) {
-//				double[] nums = splitLine(line);
-//				for(double num : nums) {
-//					System.out.println(num);
-//				}
-//			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
+		Trajectory t = CommandBase.fileSystem.readTrajectory(0);
+		CommandBase.fileSystem.writeTrajectory(t, 1);
+	}	
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
 	 * You can use it to reset any subsystem information you want to clear when
